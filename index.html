@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+
+                // Part 1: Multiple Choice
+                const mcButtons = document.querySelectorAll(".mc-choice");
+                const mcResult = document.querySelector("#mc-result");
+
+                mcButtons.forEach(button => {
+                    button.addEventListener("click", function () {
+
+                        // reset all buttons
+                        mcButtons.forEach(b => {
+                            b.classList.remove("correct-choice");
+                            b.classList.remove("wrong-choice");
+                        });
+
+                        // check if clicked button is correct
+                        if (button.dataset.correct === "true") {
+                            button.classList.add("correct-choice");
+                            mcResult.textContent = "Correct!";
+                        } else {
+                            button.classList.add("wrong-choice");
+                            mcResult.textContent = "Incorrect";
+                        }
+                    });
+                });
+
+                // Part 2: Free Response
+                const frInput = document.querySelector("#fr-input");
+                const frButton = document.querySelector("#fr-check");
+                const frResult = document.querySelector("#fr-result");
+
+                frButton.addEventListener("click", function () {
+                    const answer = frInput.value.trim().toLowerCase();
+
+                    // reset input styles
+                    frInput.classList.remove("correct-choice");
+                    frInput.classList.remove("wrong-choice");
+
+                    // choose your correct answer here:
+                    // example correct answer: "python"
+                    if (answer === "python") {
+                        frInput.classList.add("correct-choice");
+                        frResult.textContent = "Correct!";
+                    } else {
+                        frInput.classList.add("wrong-choice");
+                        frResult.textContent = "Incorrect";
+                    }
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice</h2>
+                <hr>
+
+                <h3>Which language is Django primarily written in?</h3>
+
+                <button class="mc-choice" data-correct="false">JavaScript</button>
+                <button class="mc-choice" data-correct="true">Python</button>
+                <button class="mc-choice" data-correct="false">C</button>
+                <button class="mc-choice" data-correct="false">Java</button>
+
+                <p id="mc-result"></p>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+
+                <h3>What is the correct answer to this question? (type: Python)</h3>
+
+                <input id="fr-input" type="text" placeholder="Type your answer">
+                <input id="fr-check" type="submit" value="Check Answer">
+
+                <p id="fr-result"></p>
+            </div>
+        </div>
+    </body>
+</html>
