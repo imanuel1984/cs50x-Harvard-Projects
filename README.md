@@ -1,163 +1,126 @@
-# cs50x-Harvard-Projects
-CS50x Projects Portfolio
-Author
+## CS50x – Introduction to Computer Science (Harvard University)
 
-Imanuel Golubok
-CS50x – Introduction to Computer Science
-Harvard University
+A comprehensive collection of programming projects completed as part of CS50x, Harvard University’s introduction to computer science.
 
-Overview
+📌 Overview
 
-This repository documents the projects completed as part of CS50x (Introduction to Computer Science).
-The projects span low-level systems programming in C, algorithmic problem solving, Python, SQL, and web development using Flask, HTML, CSS, and JavaScript.
+This repository contains all coursework projects and the final project completed for CS50x.
+The work progresses from low-level programming in C to full-stack web development using Python, SQL, and JavaScript, demonstrating a broad and solid foundation in computer science.
 
-Together, these projects demonstrate progression from foundational programming concepts (memory, algorithms, data structures) to full-stack web applications with authentication, databases, and dynamic user interfaces.
+Each project lives in its own branch, following the structure used throughout the course.
 
-Core Technologies Used
+🛠️ Technologies & Tools
 
-Languages: C, Python, JavaScript, SQL
+Languages: C, Python, SQL, JavaScript
 
-Web: HTML, CSS, Flask
+Web: Flask, Django, HTML, CSS, Bootstrap
 
 Databases: SQLite
 
-Concepts: Algorithms, Data Structures, Memory Management, Hash Tables, Graphs, Authentication, Web APIs
+Concepts: Algorithms, Data Structures, Hash Tables, Recursion, File I/O, Authentication
 
-Tools: Git, Linux, VS Code
+Tools: Git, VS Code, Linux
 
-Project List & Descriptions
-🔹 Readability (C)
+📂 Projects Included
+🔹 Core Programming (C)
 
-Analyzed text input to compute grade-level readability using the Coleman–Liau index.
-Focused on string parsing, character classification, and mathematical formulas.
+Plurality – Vote-counting system using plurality rules
 
-🔹 Inheritance (C)
+Runoff – Ranked-choice voting with candidate elimination
 
-Simulated genetic inheritance across generations.
-Used recursion, structs, pointers, and dynamic memory allocation.
+Readability – Text complexity analysis using the Coleman–Liau index
 
-🔹 Volume (C)
+Volume – Audio volume manipulation via binary file processing
 
-Manipulated WAV audio files by adjusting sound amplitude.
-Worked directly with binary file I/O and memory buffers.
+Inheritance – Genetic inheritance simulation using recursion
 
-🔹 Plurality (C)
+Speller – High-performance spell checker using hash tables
 
-Implemented a vote-counting system using plurality rules.
-Practiced arrays, structs, string comparison, and input validation.
+🔹 Data & Algorithms (Python / SQL)
 
-🔹 Runoff (C)
+DNA – DNA profiling tool matching STR sequences to a database
 
-Built an instant-runoff (ranked-choice) voting system.
-Handled vote redistribution, elimination logic, majority detection, and tie handling.
+Movies – Relational database queries on a movie dataset
 
-🔹 Tideman (C)
+Songs – SQL-based music dataset analysis
 
-Implemented the Tideman ranked-pairs voting algorithm.
-Used graphs, pairwise comparisons, cycle detection, and locked graph traversal.
+Fiftyville – Crime investigation solved entirely through SQL queries
 
-🔹 Speller (C)
+🔹 Web Development
 
-Created a high-performance spell checker using hash tables and linked lists.
-Implemented custom hash functions and optimized dictionary lookups.
-Focused on memory efficiency and proper cleanup.
+Homepage – Responsive personal website using HTML, CSS, JavaScript, Bootstrap
 
-🔹 DNA (Python)
+Trivia – Interactive trivia game with client-side validation
 
-Developed a forensic DNA profiling tool that matches STR patterns against a database.
-Used CSV parsing, string analysis, and algorithmic counting logic to identify individuals.
+Birthdays – Flask app storing birthdays in a SQL database
 
-🔹 Songs (SQL)
+Finance – Stock trading simulator with authentication, transactions, and live price lookup
 
-Queried a music database to answer analytical questions.
-Focused on joins, aggregation, filtering, and SQL query optimization.
+🚀 Final Project
+Volunteer Transport Coordination Platform
 
-🔹 Movies (SQL)
+A full-stack web application designed to coordinate transportation between patients and volunteer drivers.
 
-Analyzed a movie dataset to extract insights using SQL.
-Practiced complex joins, nested queries, and data relationships.
+Key Features
 
-🔹 Fiftyville (SQL)
+Role-based access: patients and volunteers
 
-Solved a fictional crime by analyzing relational data.
-Demonstrated investigative reasoning using SQL queries alone.
+Transport request lifecycle: open → accepted → done / cancelled
 
-🔹 Trivia (HTML, CSS, JavaScript)
-
-Built an interactive trivia website.
-Implemented client-side logic, event handling, and dynamic feedback.
-
-🔹 Homepage (HTML, CSS)
-
-Created a personal multi-page website.
-Focused on semantic HTML, responsive design, and clean CSS styling.
-
-🔹 Birthdays (Python, Flask, SQL)
-
-Built a Flask web application to store and display birthdays.
-Implemented form handling, database insertion, and dynamic table rendering.
-
-🔹 Finance (Python, Flask, SQL)
-
-Developed a stock trading simulator web application.
-Features included:
-
-User authentication
-
-Real-time stock price lookup
-
-Buying and selling shares
-
-Portfolio tracking
-
-Transaction history
-
-Demonstrated full-stack development with server-side validation and SQL persistence.
-
-Final Project
-🚑 STransport – Volunteer Transport Coordination Platform
-
-A full-stack web application that connects patients needing transportation with volunteer drivers.
-
-Key Features:
-
-Role-based access (patient / volunteer)
-
-Transport request lifecycle (open → accepted → done / cancelled)
-
-Volunteer accept/reject logic with aggregated rejection handling
+Volunteer accept/reject workflow with rejection tracking
 
 Automatic cancellation when no volunteers are available
 
-Secure authentication and CSRF protection
+Secure authentication and server-side authorization
 
-Dynamic, SPA-like user interface with JavaScript
+Dynamic, SPA-like interface using JavaScript
 
-Technologies: Python, Django, SQL, JavaScript, HTML, CSS
+Relational SQLite database design
 
-This project demonstrates system design, authorization, state management, and real-world workflow modeling.
+Tech Stack
 
-Learning Outcomes
+Python
 
-Through these projects, I gained hands-on experience with:
+Django
 
-Algorithmic problem solving
+SQLite
 
-Memory management in C
+HTML, CSS, JavaScript
 
-Data structures (arrays, hash tables, graphs)
+This project demonstrates real-world system design, state management, permissions, and data modeling.
 
-SQL databases and relational modeling
+🧱 Repository Structure
 
-Web application development
+Each project is stored in its own branch
 
-Secure authentication and authorization
+Each branch contains:
 
-Debugging, testing, and iterative development
+Source code
 
-SQL and relational database design
+Project-specific README.md
 
-Web development fundamentals
+The default branch contains this overview README
 
-Debugging, testing, and edge-case handling
+🎓 Learning Outcomes
+
+Through these projects, I developed:
+
+Strong problem-solving and algorithmic thinking
+
+Hands-on experience with memory management in C
+
+Practical database design and querying skills
+
+Full-stack web development experience
+
+Confidence building non-trivial, stateful applications
+
+🤝 Academic Integrity
+
+All projects were implemented by me.
+
+👤 Author
+
+Imanuel Golubok
+CS50x – Harvard University
 
