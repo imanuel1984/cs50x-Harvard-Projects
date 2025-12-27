@@ -1,0 +1,5 @@
+If songs.db contains the top 100 songs of one listener from 2018, their audio aura would likely be energetic and upbeat. The average energy and danceability suggest that the listener prefers lively, rhythmic music, while the valence indicates generally positive or happy moods. Overall, this listener seems to enjoy mainstream, high-energy pop and hip-hop tracks.
+
+However, calculating an audio aura using only averages of energy, valence, and danceability may not be very representative of the listener. Averages hide variation and do not account for how often certain songs are played, at what times they are listened to, or the emotional context in which the music is consumed. Additionally, the top 100 songs may include outliers that skew the results.
+
+A better approach would be to weight songs by play count, analyze trends over time, or cluster songs into different mood categories. Spotify could also incorporate additional audio features such as tempo, loudness, and lyrical sentiment to create a more nuanced and accurate representation of a listener’s audio aura.
