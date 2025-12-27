@@ -1,156 +1,159 @@
 # cs50x-Harvard-Projects
-CS50x Projects — Introduction to Computer Science (Harvard University)
+CS50x Projects Portfolio
+Author
+
+Imanuel Golubok
+CS50x – Introduction to Computer Science
+Harvard University
+
 Overview
 
-This repository contains a collection of projects completed as part of CS50x: Introduction to Computer Science, Harvard University’s foundational computer science course.
-The projects span systems programming, algorithms, data structures, Python scripting, databases, and web development, progressing from low-level C programs to full-stack web applications.
+This repository documents the projects completed as part of CS50x (Introduction to Computer Science).
+The projects span low-level systems programming in C, algorithmic problem solving, Python, SQL, and web development using Flask, HTML, CSS, and JavaScript.
 
-Together, these projects demonstrate strong fundamentals in problem solving, algorithmic thinking, memory management, and software design, as well as practical experience building real, working systems.
+Together, these projects demonstrate progression from foundational programming concepts (memory, algorithms, data structures) to full-stack web applications with authentication, databases, and dynamic user interfaces.
 
-Technologies Used
+Core Technologies Used
 
-Languages: C, Python, SQL, JavaScript
+Languages: C, Python, JavaScript, SQL
 
-Web: Flask, HTML, CSS, Bootstrap
+Web: HTML, CSS, Flask
 
-Concepts: Algorithms, Data Structures, Hash Tables, Graphs, Memory Management, File I/O
+Databases: SQLite
 
-Tools: Git, Linux, SQLite
+Concepts: Algorithms, Data Structures, Memory Management, Hash Tables, Graphs, Authentication, Web APIs
 
-Projects
-🗳️ Plurality Election System (C)
+Tools: Git, Linux, VS Code
 
-Implemented a vote-counting program that determines the winner of an election using plurality rules.
+Project List & Descriptions
+🔹 Readability (C)
 
-Managed candidates and votes using arrays and structs
+Analyzed text input to compute grade-level readability using the Coleman–Liau index.
+Focused on string parsing, character classification, and mathematical formulas.
 
-Implemented input validation and string comparison
+🔹 Inheritance (C)
 
-Introduced basic election logic and winner determination
+Simulated genetic inheritance across generations.
+Used recursion, structs, pointers, and dynamic memory allocation.
 
-Concepts: arrays, structs, conditionals, loops
+🔹 Volume (C)
 
-🗳️ Runoff Voting System (C)
+Manipulated WAV audio files by adjusting sound amplitude.
+Worked directly with binary file I/O and memory buffers.
 
-Built an instant-runoff (ranked-choice) voting system simulating real-world elections.
+🔹 Plurality (C)
 
-Tracked voter preferences using 2D arrays
+Implemented a vote-counting system using plurality rules.
+Practiced arrays, structs, string comparison, and input validation.
 
-Iteratively eliminated candidates with the fewest votes
+🔹 Runoff (C)
 
-Implemented majority detection and tie handling
+Built an instant-runoff (ranked-choice) voting system.
+Handled vote redistribution, elimination logic, majority detection, and tie handling.
 
-Concepts: algorithms, iterative elimination, data modeling
+🔹 Tideman (C)
 
-🗳️ Tideman Election Algorithm (C)
+Implemented the Tideman ranked-pairs voting algorithm.
+Used graphs, pairwise comparisons, cycle detection, and locked graph traversal.
 
-Implemented the Tideman (Ranked Pairs) voting algorithm using graph theory.
+🔹 Speller (C)
 
-Computed pairwise candidate preferences
+Created a high-performance spell checker using hash tables and linked lists.
+Implemented custom hash functions and optimized dictionary lookups.
+Focused on memory efficiency and proper cleanup.
 
-Built and locked a directed graph while preventing cycles
+🔹 DNA (Python)
 
-Ensured correct winner selection via topological reasoning
+Developed a forensic DNA profiling tool that matches STR patterns against a database.
+Used CSV parsing, string analysis, and algorithmic counting logic to identify individuals.
 
-Concepts: graphs, cycle detection, algorithmic correctness
+🔹 Songs (SQL)
 
-🧬 DNA Profiling System (Python)
+Queried a music database to answer analytical questions.
+Focused on joins, aggregation, filtering, and SQL query optimization.
 
-Created a forensic DNA analysis tool that identifies individuals based on Short Tandem Repeats (STRs).
+🔹 Movies (SQL)
 
-Parsed CSV databases of DNA profiles
+Analyzed a movie dataset to extract insights using SQL.
+Practiced complex joins, nested queries, and data relationships.
 
-Analyzed DNA sequences to compute longest STR runs
+🔹 Fiftyville (SQL)
 
-Matched computed profiles against known individuals
+Solved a fictional crime by analyzing relational data.
+Demonstrated investigative reasoning using SQL queries alone.
 
-Concepts: string processing, CSV parsing, algorithmic counting
+🔹 Trivia (HTML, CSS, JavaScript)
 
-📖 Speller — Hash Table Spell Checker (C)
+Built an interactive trivia website.
+Implemented client-side logic, event handling, and dynamic feedback.
 
-Built a high-performance spell checker similar to those used in real applications.
+🔹 Homepage (HTML, CSS)
 
-Implemented a hash table with linked lists
+Created a personal multi-page website.
+Focused on semantic HTML, responsive design, and clean CSS styling.
 
-Designed a custom hash function
+🔹 Birthdays (Python, Flask, SQL)
 
-Managed dynamic memory allocation and cleanup
+Built a Flask web application to store and display birthdays.
+Implemented form handling, database insertion, and dynamic table rendering.
 
-Concepts: hash tables, pointers, linked lists, memory management
+🔹 Finance (Python, Flask, SQL)
 
-🖼️ Image Filters (C)
+Developed a stock trading simulator web application.
+Features included:
 
-Implemented image processing filters for bitmap (BMP) images.
+User authentication
 
-Applied grayscale, reflection, blur, and edge-detection filters
+Real-time stock price lookup
 
-Worked directly with pixel-level data
+Buying and selling shares
 
-Implemented convolution-based algorithms
+Portfolio tracking
 
-Concepts: low-level data manipulation, math-based algorithms
+Transaction history
 
-🕵️ Fiftyville — SQL Investigation
+Demonstrated full-stack development with server-side validation and SQL persistence.
 
-Solved a fictional crime by querying a relational database using SQL.
+Final Project
+🚑 STransport – Volunteer Transport Coordination Platform
 
-Analyzed multiple related tables (people, flights, phone calls, transactions)
+A full-stack web application that connects patients needing transportation with volunteer drivers.
 
-Used JOINs, subqueries, filtering, and ordering
+Key Features:
 
-Reconstructed a full timeline using data reasoning
+Role-based access (patient / volunteer)
 
-Concepts: SQL joins, relational databases, analytical querying
+Transport request lifecycle (open → accepted → done / cancelled)
 
-🎬 Movies Database Queries (SQL)
+Volunteer accept/reject logic with aggregated rejection handling
 
-Wrote complex SQL queries to analyze a large IMDb-style database.
+Automatic cancellation when no volunteers are available
 
-Used joins, aggregation, sorting, and filtering
+Secure authentication and CSRF protection
 
-Avoided assumptions about primary keys
+Dynamic, SPA-like user interface with JavaScript
 
-Ensured correctness across large datasets
+Technologies: Python, Django, SQL, JavaScript, HTML, CSS
 
-Concepts: relational modeling, SQL optimization
-
-💬 Trivia Web Application (HTML, CSS, JavaScript)
-
-Built an interactive trivia webpage with dynamic feedback.
-
-Implemented multiple-choice and free-response questions
-
-Used JavaScript event listeners and DOM manipulation
-
-Applied CSS styling for interactive feedback
-
-Concepts: frontend logic, event-driven programming
-
-💸 Finance — Stock Trading Simulator (Python, Flask, SQL)
-
-Developed a web-based stock trading platform that simulates buying and selling stocks.
-
-Implemented user authentication and session management
-
-Integrated real-time stock price lookups via API
-
-Tracked transactions, holdings, and portfolio value
-
-Used SQL to persist user data and transaction history
-
-Concepts: full-stack development, authentication, databases
+This project demonstrates system design, authorization, state management, and real-world workflow modeling.
 
 Learning Outcomes
 
-Through these projects, I gained strong foundations in:
+Through these projects, I gained hands-on experience with:
 
 Algorithmic problem solving
 
-Data structures and memory management
+Memory management in C
 
-Systems-level programming in C
+Data structures (arrays, hash tables, graphs)
 
-Python scripting and data processing
+SQL databases and relational modeling
+
+Web application development
+
+Secure authentication and authorization
+
+Debugging, testing, and iterative development
 
 SQL and relational database design
 
