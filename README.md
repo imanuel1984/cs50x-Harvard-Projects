@@ -1,9 +1,3 @@
-
----
-
-## 📁 Inheritance
-
-```md
 # Inheritance
 
 ## Description
