@@ -1,150 +1,126 @@
-STransport – Volunteer Transport Coordination Platform
-Video Demo:
+## CS50x – Introduction to Computer Science (Harvard University)
 
-<https://youtu.be/DhUeRmmpLrs>
+A comprehensive collection of programming projects completed as part of CS50x, Harvard University’s introduction to computer science.
 
-Description
+📌 Overview
 
-STransport is a lightweight web-based transportation coordination platform designed to connect patients who need rides with volunteer drivers. The system allows patients to create transport requests and volunteers to view, accept, or reject those requests. All behavior is role-aware, strictly enforced on the server, and reflected dynamically in the user interface.
+This repository contains all coursework projects and the final project completed for CS50x.
+The work progresses from low-level programming in C to full-stack web development using Python, SQL, and JavaScript, demonstrating a broad and solid foundation in computer science.
 
-This project applies core concepts learned throughout CS50x, including algorithms, data modeling, SQL databases, web development with Python, server-side authorization, and dynamic front-end interaction. The goal of the project is to solve a real-world coordination problem using a non-trivial, stateful web application.
+Each project lives in its own branch, following the structure used throughout the course.
 
-The application implements a two-sided workflow with a clear request lifecycle (open → accepted → done / cancelled). If all volunteers reject a request, the system automatically cancels it and records that no volunteers were available, allowing the patient to clearly understand why the request was closed.
+🛠️ Technologies & Tools
 
-Distinctiveness and Complexity
-Distinctiveness
+Languages: C, Python, SQL, JavaScript
 
-This is not a simple CRUD application. The platform implements a two-party workflow with role-dependent behavior:
+Web: Flask, Django, HTML, CSS, Bootstrap
 
-Volunteers see only requests they can act on: open requests they have not previously rejected and that have not already been globally cancelled due to lack of availability. Volunteers can accept or reject requests with a single click, and rejections are tracked per volunteer.
+Databases: SQLite
 
-Patients see only their own requests. Open requests appear separately from closed or cancelled ones, and historical records include rides that were accepted but already assigned to a volunteer. Patients can cancel open requests and delete cancelled ones from their history.
+Concepts: Algorithms, Data Structures, Hash Tables, Recursion, File I/O, Authentication
 
-The user interface and API responses change based on who is logged in, making the system fundamentally different from generic blog or to-do applications.
+Tools: Git, VS Code, Linux
 
-Complexity
+📂 Projects Included
+🔹 Core Programming (C)
 
-Under the hood, the project includes several non-trivial components:
+Plurality – Vote-counting system using plurality rules
 
-Aggregated rejection logic: Each volunteer’s rejection is stored with an optional reason. When all volunteers have rejected a request, the server automatically marks it as cancelled and sets no_volunteers_available = True, producing a clear explanation for the patient.
+Runoff – Ranked-choice voting with candidate elimination
 
-Role-scoped deletion endpoints: Volunteers may delete only requests they accepted and completed, while patients may delete only their own cancelled requests. All permissions are enforced server-side.
+Readability – Text complexity analysis using the Coleman–Liau index
 
-Optimized open-request feed: Volunteers never see requests they already rejected or requests that were globally cancelled due to lack of availability.
+Volume – Audio volume manipulation via binary file processing
 
-CSRF-aware, SPA-like front end: Pages are rendered server-side, but the UI behaves like a small single-page application using JavaScript to switch panels and update content dynamically.
+Inheritance – Genetic inheritance simulation using recursion
 
-Clear serialization boundary: A centralized serialization function controls how request objects are exposed to the front end, keeping templates minimal and front-end logic clean.
+Speller – High-performance spell checker using hash tables
 
-These elements together make the project both distinctive and significantly more complex than standard CRUD examples.
+🔹 Data & Algorithms (Python / SQL)
 
-Project Structure
-service/                    # Django project
-  manage.py
-  service/
-    settings.py
-    urls.py
-    wsgi.py
+DNA – DNA profiling tool matching STR sequences to a database
 
-  stransport/               # Main application
-    apps.py
-    models.py               # Profile, TransportRequest, TransportAssignment, TransportRejection
-    views.py                # Role-aware JSON APIs + page view
-    urls.py                 # Page routes + API routes
-    signals.py              # Auto-create Profile for new User
+Movies – Relational database queries on a movie dataset
 
-    static/stransport/
-      stransport.js         # SPA-like UI logic (fetch, CSRF, panels)
-      stransport.css        # UI styling + animations
+Songs – SQL-based music dataset analysis
 
-    templates/
-      stransport/
-        layout.html
-        home.html
-      registration/
-        login.html
-        signup.html
+Fiftyville – Crime investigation solved entirely through SQL queries
 
-README.md
-requirements.txt
+🔹 Web Development
 
-Data Model
+Homepage – Responsive personal website using HTML, CSS, JavaScript, Bootstrap
 
-Profile: (user, role {patient | volunteer}, phone)
+Trivia – Interactive trivia game with client-side validation
 
-TransportRequest:
-(patient, pickup_address, destination, requested_time, notes, status {open | accepted | done | cancelled}, no_volunteers_available)
+Birthdays – Flask app storing birthdays in a SQL database
 
-TransportAssignment:
-(request, volunteer, accepted_time, comment)
+Finance – Stock trading simulator with authentication, transactions, and live price lookup
 
-TransportRejection:
-(request, volunteer, reason) — unique per volunteer per request
+🚀 Final Project
+Volunteer Transport Coordination Platform
 
-API Endpoints (JSON)
+A full-stack web application designed to coordinate transportation between patients and volunteer drivers.
 
-GET /api/requests/
+Key Features
 
-Volunteer: open requests excluding previous rejections and globally cancelled ones
+Role-based access: patients and volunteers
 
-Patient: own open requests
+Transport request lifecycle: open → accepted → done / cancelled
 
-POST /api/requests/create/ — Patient only
+Volunteer accept/reject workflow with rejection tracking
 
-POST /api/requests/accept/<id>/ — Volunteer only
+Automatic cancellation when no volunteers are available
 
-POST /api/requests/reject/<id>/ — Volunteer only (auto-cancels if all volunteers reject)
+Secure authentication and server-side authorization
 
-POST /api/requests/cancel/<id>/ — Patient only
+Dynamic, SPA-like interface using JavaScript
 
-GET /api/requests/accepted/ — Volunteer’s accepted requests
+Relational SQLite database design
 
-GET /api/requests/closed/ — Patient request history
+Tech Stack
 
-POST /api/requests/delete/<id>/ — Role-restricted deletion
+Python
 
-All write endpoints require authentication and CSRF protection.
+Django
 
-Front End
+SQLite
 
-static/stransport/stransport.js provides a dynamic interface:
+HTML, CSS, JavaScript
 
-Smooth panel switching between Open, Closed, and Accepted views
+This project demonstrates real-world system design, state management, permissions, and data modeling.
 
-Inline actions for both roles
+🧱 Repository Structure
 
-Visual emphasis for open requests via CSS animations
+Each project is stored in its own branch
 
-How to Run
-python -m venv venv
-source venv/bin/activate   # or venv\Scripts\activate on Windows
-pip install -r requirements.txt
-python manage.py migrate
-python manage.py runserver
+Each branch contains:
 
+Source code
 
-Visit: http://localhost:8000
+Project-specific README.md
 
-Design Decisions
+The default branch contains this overview README
 
-Security: Django session authentication and CSRF protection; all role checks are enforced server-side.
+🎓 Learning Outcomes
 
-Database: SQLite chosen for simplicity and portability.
+Through these projects, I developed:
 
-Architecture: Clear separation between models, views, and serialized API responses.
+Strong problem-solving and algorithmic thinking
 
-UI strategy: Server-rendered pages enhanced with JavaScript to balance simplicity and interactivity.
+Hands-on experience with memory management in C
 
-Limitations and Future Work
+Practical database design and querying skills
 
-No real-time updates (WebSockets could be added)
+Full-stack web development experience
 
-No geocoding or maps yet
+Confidence building non-trivial, stateful applications
 
-No background cleanup of stale requests
+🤝 Academic Integrity
 
-Could add a distinct “completed” state instead of deletion for full audit history
+All projects were implemented by me.
+AI-based tools were used only for debugging assistance and clarification, in accordance with CS50’s academic honesty policy.
 
-Use of AI Tools
+👤 Author
 
-AI-based tools were used as an assistant for debugging and clarification. All architectural decisions, logic, and final implementation were completed by the author.
+Imanuel Golubok
+CS50x – Harvard University
