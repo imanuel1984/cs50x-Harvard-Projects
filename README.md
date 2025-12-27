@@ -1,163 +1,150 @@
-# cs50x-Harvard-Projects
-CS50x Projects Portfolio
-Author
+STransport – Volunteer Transport Coordination Platform
+Video Demo:
 
-Imanuel Golubok
-CS50x – Introduction to Computer Science
-Harvard University
+<https://youtu.be/DhUeRmmpLrs>
 
-Overview
+Description
 
-This repository documents the projects completed as part of CS50x (Introduction to Computer Science).
-The projects span low-level systems programming in C, algorithmic problem solving, Python, SQL, and web development using Flask, HTML, CSS, and JavaScript.
+STransport is a lightweight web-based transportation coordination platform designed to connect patients who need rides with volunteer drivers. The system allows patients to create transport requests and volunteers to view, accept, or reject those requests. All behavior is role-aware, strictly enforced on the server, and reflected dynamically in the user interface.
 
-Together, these projects demonstrate progression from foundational programming concepts (memory, algorithms, data structures) to full-stack web applications with authentication, databases, and dynamic user interfaces.
+This project applies core concepts learned throughout CS50x, including algorithms, data modeling, SQL databases, web development with Python, server-side authorization, and dynamic front-end interaction. The goal of the project is to solve a real-world coordination problem using a non-trivial, stateful web application.
 
-Core Technologies Used
+The application implements a two-sided workflow with a clear request lifecycle (open → accepted → done / cancelled). If all volunteers reject a request, the system automatically cancels it and records that no volunteers were available, allowing the patient to clearly understand why the request was closed.
 
-Languages: C, Python, JavaScript, SQL
+Distinctiveness and Complexity
+Distinctiveness
 
-Web: HTML, CSS, Flask
+This is not a simple CRUD application. The platform implements a two-party workflow with role-dependent behavior:
 
-Databases: SQLite
+Volunteers see only requests they can act on: open requests they have not previously rejected and that have not already been globally cancelled due to lack of availability. Volunteers can accept or reject requests with a single click, and rejections are tracked per volunteer.
 
-Concepts: Algorithms, Data Structures, Memory Management, Hash Tables, Graphs, Authentication, Web APIs
+Patients see only their own requests. Open requests appear separately from closed or cancelled ones, and historical records include rides that were accepted but already assigned to a volunteer. Patients can cancel open requests and delete cancelled ones from their history.
 
-Tools: Git, Linux, VS Code
+The user interface and API responses change based on who is logged in, making the system fundamentally different from generic blog or to-do applications.
 
-Project List & Descriptions
-🔹 Readability (C)
+Complexity
 
-Analyzed text input to compute grade-level readability using the Coleman–Liau index.
-Focused on string parsing, character classification, and mathematical formulas.
+Under the hood, the project includes several non-trivial components:
 
-🔹 Inheritance (C)
+Aggregated rejection logic: Each volunteer’s rejection is stored with an optional reason. When all volunteers have rejected a request, the server automatically marks it as cancelled and sets no_volunteers_available = True, producing a clear explanation for the patient.
 
-Simulated genetic inheritance across generations.
-Used recursion, structs, pointers, and dynamic memory allocation.
+Role-scoped deletion endpoints: Volunteers may delete only requests they accepted and completed, while patients may delete only their own cancelled requests. All permissions are enforced server-side.
 
-🔹 Volume (C)
+Optimized open-request feed: Volunteers never see requests they already rejected or requests that were globally cancelled due to lack of availability.
 
-Manipulated WAV audio files by adjusting sound amplitude.
-Worked directly with binary file I/O and memory buffers.
+CSRF-aware, SPA-like front end: Pages are rendered server-side, but the UI behaves like a small single-page application using JavaScript to switch panels and update content dynamically.
 
-🔹 Plurality (C)
+Clear serialization boundary: A centralized serialization function controls how request objects are exposed to the front end, keeping templates minimal and front-end logic clean.
 
-Implemented a vote-counting system using plurality rules.
-Practiced arrays, structs, string comparison, and input validation.
+These elements together make the project both distinctive and significantly more complex than standard CRUD examples.
 
-🔹 Runoff (C)
+Project Structure
+service/                    # Django project
+  manage.py
+  service/
+    settings.py
+    urls.py
+    wsgi.py
 
-Built an instant-runoff (ranked-choice) voting system.
-Handled vote redistribution, elimination logic, majority detection, and tie handling.
+  stransport/               # Main application
+    apps.py
+    models.py               # Profile, TransportRequest, TransportAssignment, TransportRejection
+    views.py                # Role-aware JSON APIs + page view
+    urls.py                 # Page routes + API routes
+    signals.py              # Auto-create Profile for new User
 
-🔹 Tideman (C)
+    static/stransport/
+      stransport.js         # SPA-like UI logic (fetch, CSRF, panels)
+      stransport.css        # UI styling + animations
 
-Implemented the Tideman ranked-pairs voting algorithm.
-Used graphs, pairwise comparisons, cycle detection, and locked graph traversal.
+    templates/
+      stransport/
+        layout.html
+        home.html
+      registration/
+        login.html
+        signup.html
 
-🔹 Speller (C)
+README.md
+requirements.txt
 
-Created a high-performance spell checker using hash tables and linked lists.
-Implemented custom hash functions and optimized dictionary lookups.
-Focused on memory efficiency and proper cleanup.
+Data Model
 
-🔹 DNA (Python)
+Profile: (user, role {patient | volunteer}, phone)
 
-Developed a forensic DNA profiling tool that matches STR patterns against a database.
-Used CSV parsing, string analysis, and algorithmic counting logic to identify individuals.
+TransportRequest:
+(patient, pickup_address, destination, requested_time, notes, status {open | accepted | done | cancelled}, no_volunteers_available)
 
-🔹 Songs (SQL)
+TransportAssignment:
+(request, volunteer, accepted_time, comment)
 
-Queried a music database to answer analytical questions.
-Focused on joins, aggregation, filtering, and SQL query optimization.
+TransportRejection:
+(request, volunteer, reason) — unique per volunteer per request
 
-🔹 Movies (SQL)
+API Endpoints (JSON)
 
-Analyzed a movie dataset to extract insights using SQL.
-Practiced complex joins, nested queries, and data relationships.
+GET /api/requests/
 
-🔹 Fiftyville (SQL)
+Volunteer: open requests excluding previous rejections and globally cancelled ones
 
-Solved a fictional crime by analyzing relational data.
-Demonstrated investigative reasoning using SQL queries alone.
+Patient: own open requests
 
-🔹 Trivia (HTML, CSS, JavaScript)
+POST /api/requests/create/ — Patient only
 
-Built an interactive trivia website.
-Implemented client-side logic, event handling, and dynamic feedback.
+POST /api/requests/accept/<id>/ — Volunteer only
 
-🔹 Homepage (HTML, CSS)
+POST /api/requests/reject/<id>/ — Volunteer only (auto-cancels if all volunteers reject)
 
-Created a personal multi-page website.
-Focused on semantic HTML, responsive design, and clean CSS styling.
+POST /api/requests/cancel/<id>/ — Patient only
 
-🔹 Birthdays (Python, Flask, SQL)
+GET /api/requests/accepted/ — Volunteer’s accepted requests
 
-Built a Flask web application to store and display birthdays.
-Implemented form handling, database insertion, and dynamic table rendering.
+GET /api/requests/closed/ — Patient request history
 
-🔹 Finance (Python, Flask, SQL)
+POST /api/requests/delete/<id>/ — Role-restricted deletion
 
-Developed a stock trading simulator web application.
-Features included:
+All write endpoints require authentication and CSRF protection.
 
-User authentication
+Front End
 
-Real-time stock price lookup
+static/stransport/stransport.js provides a dynamic interface:
 
-Buying and selling shares
+Smooth panel switching between Open, Closed, and Accepted views
 
-Portfolio tracking
+Inline actions for both roles
 
-Transaction history
+Visual emphasis for open requests via CSS animations
 
-Demonstrated full-stack development with server-side validation and SQL persistence.
+How to Run
+python -m venv venv
+source venv/bin/activate   # or venv\Scripts\activate on Windows
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver
 
-Final Project
-🚑 STransport – Volunteer Transport Coordination Platform
 
-A full-stack web application that connects patients needing transportation with volunteer drivers.
+Visit: http://localhost:8000
 
-Key Features:
+Design Decisions
 
-Role-based access (patient / volunteer)
+Security: Django session authentication and CSRF protection; all role checks are enforced server-side.
 
-Transport request lifecycle (open → accepted → done / cancelled)
+Database: SQLite chosen for simplicity and portability.
 
-Volunteer accept/reject logic with aggregated rejection handling
+Architecture: Clear separation between models, views, and serialized API responses.
 
-Automatic cancellation when no volunteers are available
+UI strategy: Server-rendered pages enhanced with JavaScript to balance simplicity and interactivity.
 
-Secure authentication and CSRF protection
+Limitations and Future Work
 
-Dynamic, SPA-like user interface with JavaScript
+No real-time updates (WebSockets could be added)
 
-Technologies: Python, Django, SQL, JavaScript, HTML, CSS
+No geocoding or maps yet
 
-This project demonstrates system design, authorization, state management, and real-world workflow modeling.
+No background cleanup of stale requests
 
-Learning Outcomes
+Could add a distinct “completed” state instead of deletion for full audit history
 
-Through these projects, I gained hands-on experience with:
+Use of AI Tools
 
-Algorithmic problem solving
-
-Memory management in C
-
-Data structures (arrays, hash tables, graphs)
-
-SQL databases and relational modeling
-
-Web application development
-
-Secure authentication and authorization
-
-Debugging, testing, and iterative development
-
-SQL and relational database design
-
-Web development fundamentals
-
-Debugging, testing, and edge-case handling
-
+AI-based tools were used as an assistant for debugging and clarification. All architectural decisions, logic, and final implementation were completed by the author.
