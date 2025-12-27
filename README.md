@@ -1,42 +1,18 @@
-# cs50x-Harvard-Projects
-CS50x Projects — Introduction to Computer Science (Harvard University)
-Overview
+# Speller
 
-This repository contains a collection of projects completed as part of CS50x: Introduction to Computer Science, Harvard University’s foundational computer science course.
-The projects span systems programming, algorithms, data structures, Python scripting, databases, and web development, progressing from low-level C programs to full-stack web applications.
+## Description
+A spell checker implemented using hash tables and linked lists.
 
-Together, these projects demonstrate strong fundamentals in problem solving, algorithmic thinking, memory management, and software design, as well as practical experience building real, working systems.
+Optimized for fast dictionary lookups and efficient memory usage.
 
-Technologies Used
+## Concepts & Skills
+- Hash tables
+- Linked lists
+- Custom hash functions
+- Dynamic memory management
 
-Languages: C, Python, SQL, JavaScript
-
-Web: Flask, HTML, CSS, Bootstrap
-
-Concepts: Algorithms, Data Structures, Hash Tables, Graphs, Memory Management, File I/O
-
-Tools: Git, Linux, SQLite
-
-Projects
-🗳️ Plurality Election System (C)
-
-Implemented a vote-counting program that determines the winner of an election using plurality rules.
-
-Managed candidates and votes using arrays and structs
-
-Implemented input validation and string comparison
-
-Introduced basic election logic and winner determination
-
-Concepts: arrays, structs, conditionals, loops
-
-🗳️ Runoff Voting System (C)
-
-Built an instant-runoff (ranked-choice) voting system simulating real-world elections.
-
-Tracked voter preferences using 2D arrays
-
-Iteratively eliminated candidates with the fewest votes
+## Technologies
+- C
 
 Implemented majority detection and tie handling
 
